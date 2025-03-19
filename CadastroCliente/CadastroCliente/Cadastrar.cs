@@ -31,6 +31,21 @@ namespace CadastroCliente
 
         private void buttonCadastrar_Click(object sender, EventArgs e)
         {
+            labelErro.Text = "";
+
+            if (string.IsNullOrWhiteSpace(textBoxNome.Text))
+            {
+                labelErro.Text = "Preencha nome";
+                labelErro.ForeColor = Color.Red;
+                return;
+            }
+            if (!textBoxNome.Text.All(char.IsLetter)) 
+            {
+                labelErro.Text = "Preencha somente com letras";
+                labelErro.ForeColor= Color.Red;
+                return;
+            }
+
 
         }
     }
