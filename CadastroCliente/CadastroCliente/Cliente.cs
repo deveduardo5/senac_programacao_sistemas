@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CadastroCliente
 {
-    internal class CadastroCliente
+    internal class Cliente
     {
         public string Id { get; set; }
         public string Name { get; set; }
@@ -16,7 +16,7 @@ namespace CadastroCliente
         public string NomeSocial { get; set; }
         public bool Estrangeiro {  get; set; }
         public TipoCliente Tipo {  get; set; }
-        public EnderecoCliente Endereco { get; set; }
+        public Endereco Endereco { get; set; }
         public GeneroCliente Genero { get; set; }
         public EtniaCliente Etnia { get; set; }
     }

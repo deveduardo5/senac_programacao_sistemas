@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CadastroCliente
 {
-    internal class EnderecoCliente
+    internal class Endereco
     {
         public string Logradouro { get; set; }
         public string Numero {  get; set; }
