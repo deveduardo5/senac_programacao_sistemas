@@ -29,24 +29,191 @@ namespace CadastroCliente
 
         }
 
-        private void buttonCadastrar_Click(object sender, EventArgs e)
+        private bool LimparLabelErro()
         {
             labelErro.Text = "";
+            return true;
+        }
 
+        private bool Nome() 
+        {
             if (string.IsNullOrWhiteSpace(textBoxNome.Text))
             {
                 labelErro.Text = "Preencha nome";
                 labelErro.ForeColor = Color.Red;
-                return;
+                return false;
             }
-            if (!textBoxNome.Text.All(char.IsLetter)) 
+            if (!textBoxNome.Text.All(char.IsLetter))
             {
                 labelErro.Text = "Preencha somente com letras";
-                labelErro.ForeColor= Color.Red;
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            return true;
+        }
+        private bool Email() 
+        {
+            if (string.IsNullOrWhiteSpace(textBoxEmail.Text))
+            {
+                labelErro.Text = "Preencha Email";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            if (!textBoxEmail.Text.EndsWith("@email.com"))
+            {
+                labelErro.Text = "E-mail deve conter @email.com";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            if (textBoxEmail.Text.Length >= 20) 
+            {
+                labelErro.Text = "E-mail deve conter 10 caracteres";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            return true;
+        }
+        private bool Genero () 
+        {
+            if (comboBoxGenero.SelectedItem == null) 
+            {
+                labelErro.Text = "Selecione uma opção em gênero";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            return true ;
+        }
+        private bool NomeSocial()
+        {   
+            if (!textBoxNome.Text.All(char.IsLetter))
+            {
+                labelErro.Text = "Preencha somente com letras";
+                labelErro.ForeColor = Color.Red;
+                return false; 
+            }
+            return true;
+        }
+        private bool Etnia()
+        {
+            if (comboBoxEtnia.SelectedItem == null)
+            {
+                labelErro.Text = "Selecione uma opção em etnia";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            return true;
+        }
+        private bool Estrangeiro() 
+        {
+            if (checkBoxSimOuNao.Checked) 
+            { 
+                return false;
+            }
+            return true;
+        }
+        private bool Tipo()
+        {
+            if (radioButtonPF.Checked && radioButtonPJ.Checked)
+            {
+                labelErro.Text = "Selecione uma opção entre PF ou PJ";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            return true;
+        }
+        private bool Logradouro()
+        {
+            if (string.IsNullOrWhiteSpace(textBoxLogradouro.Text))
+            {
+                labelErro.Text = "Preencha Logradouro";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            return true;
+        }
+        private bool Numero()
+        {
+            if (string.IsNullOrWhiteSpace(textBoxNumero.Text))
+            {
+                labelErro.Text = "Preencha campo número";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            if (!textBoxNumero.Text.All(char.IsLetter))
+            {
+                labelErro.Text = "Não é possível realizar a validação somente com letras, insira números";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            return true;
+        }
+        private bool Complemento()
+        {
+            if (!textBoxComplemento.Text.All(char.IsNumber))
+            {
+                labelErro.Text = "Não é possível realizar a validação somente com números, insira letras";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            if (!textBoxComplemento.Text.All(char.IsSymbol))
+            {
+                labelErro.Text = "Não é possível realizar a validação somente com simbolos, insira letras";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            return true;
+        }
+
+
+        private void buttonCadastrar_Click(object sender, EventArgs e)
+        {
+            if (!LimparLabelErro()) 
+            {
+                return;
+            }
+            if (!Nome()) 
+            {
+                return;            
+            }
+            if (!Email()) 
+            { 
+                return ;
+            }
+            if (!Genero()) 
+            {
+                return;
+            }
+            if (!NomeSocial()) 
+            {
+                return;
+            }
+            if (!Etnia())
+            {
+                return;
+            }
+            if (!Estrangeiro())
+            {
+                return;
+            }
+            if (!Tipo())
+            {
+                return;
+            }
+            if (!Logradouro())
+            {
+                return;
+            }
+            if (!Numero())
+            {
+                return;
+            }
+            if (!Complemento())
+            {
                 return;
             }
 
-
+            labelErro.Text = "Cadastrado com sucesso!";
+            labelErro.ForeColor = Color.Green;
         }
     }
 }
