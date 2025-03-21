@@ -35,7 +35,7 @@ namespace CadastroCliente
             return true;
         }
 
-        private bool Nome() 
+        private bool Nome()
         {
             if (string.IsNullOrWhiteSpace(textBoxNome.Text))
             {
@@ -51,7 +51,8 @@ namespace CadastroCliente
             }
             return true;
         }
-        private bool Email() 
+
+        private bool Email()
         {
             if (string.IsNullOrWhiteSpace(textBoxEmail.Text))
             {
@@ -65,7 +66,7 @@ namespace CadastroCliente
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
-            if (textBoxEmail.Text.Length >= 20) 
+            if (textBoxEmail.Text.Length >= 20)
             {
                 labelErro.Text = "E-mail deve conter 10 caracteres";
                 labelErro.ForeColor = Color.Red;
@@ -73,26 +74,29 @@ namespace CadastroCliente
             }
             return true;
         }
-        private bool Genero () 
+
+        private bool Genero()
         {
-            if (comboBoxGenero.SelectedItem == null) 
+            if (comboBoxGenero.SelectedItem == null)
             {
                 labelErro.Text = "Selecione uma opção em gênero";
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
-            return true ;
+            return true;
         }
+
         private bool NomeSocial()
-        {   
+        {
             if (!textBoxNome.Text.All(char.IsLetter))
             {
                 labelErro.Text = "Preencha somente com letras";
                 labelErro.ForeColor = Color.Red;
-                return false; 
+                return false;
             }
             return true;
         }
+
         private bool Etnia()
         {
             if (comboBoxEtnia.SelectedItem == null)
@@ -103,17 +107,10 @@ namespace CadastroCliente
             }
             return true;
         }
-        private bool Estrangeiro() 
-        {
-            if (checkBoxSimOuNao.Checked) 
-            { 
-                return false;
-            }
-            return true;
-        }
+
         private bool Tipo()
         {
-            if (radioButtonPF.Checked && radioButtonPJ.Checked)
+            if (!radioButtonPF.Checked && !radioButtonPJ.Checked)
             {
                 labelErro.Text = "Selecione uma opção entre PF ou PJ";
                 labelErro.ForeColor = Color.Red;
@@ -121,6 +118,7 @@ namespace CadastroCliente
             }
             return true;
         }
+
         private bool Logradouro()
         {
             if (string.IsNullOrWhiteSpace(textBoxLogradouro.Text))
@@ -131,6 +129,7 @@ namespace CadastroCliente
             }
             return true;
         }
+
         private bool Numero()
         {
             if (string.IsNullOrWhiteSpace(textBoxNumero.Text))
@@ -139,7 +138,7 @@ namespace CadastroCliente
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
-            if (!textBoxNumero.Text.All(char.IsLetter))
+            if (!textBoxNumero.Text.All(char.IsNumber))
             {
                 labelErro.Text = "Não é possível realizar a validação somente com letras, insira números";
                 labelErro.ForeColor = Color.Red;
@@ -147,17 +146,51 @@ namespace CadastroCliente
             }
             return true;
         }
+
         private bool Complemento()
         {
-            if (!textBoxComplemento.Text.All(char.IsNumber))
+            if (textBoxComplemento.Text.All(char.IsSymbol))
+            {
+                labelErro.Text = "Não é possível realizar a validação somente com simbolos, insira letras";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            return true;
+        }
+
+        private bool Bairro() 
+        {
+            if (string.IsNullOrWhiteSpace(textBoxBairro.Text))
+            {
+                labelErro.Text = "Preencha campo Bairro";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            return true;
+        }
+
+        private bool Municipio() 
+        {
+            if (string.IsNullOrWhiteSpace(textBoxMunicipio.Text))
+            {
+                labelErro.Text = "Preencha campo Município";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            if (!textBoxMunicipio.Text.All(char.IsLetter))
             {
                 labelErro.Text = "Não é possível realizar a validação somente com números, insira letras";
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
-            if (!textBoxComplemento.Text.All(char.IsSymbol))
+            return true;
+        }
+
+        private bool Estado()
+        {
+            if (comboBoxEstado.SelectedItem == null)
             {
-                labelErro.Text = "Não é possível realizar a validação somente com simbolos, insira letras";
+                labelErro.Text = "Selecione uma opção em Estado";
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
@@ -167,31 +200,27 @@ namespace CadastroCliente
 
         private void buttonCadastrar_Click(object sender, EventArgs e)
         {
-            if (!LimparLabelErro()) 
+            if (!LimparLabelErro())
             {
                 return;
             }
-            if (!Nome()) 
-            {
-                return;            
-            }
-            if (!Email()) 
-            { 
-                return ;
-            }
-            if (!Genero()) 
+            if (!Nome())
             {
                 return;
             }
-            if (!NomeSocial()) 
+            if (!Email())
+            {
+                return;
+            }
+            if (!Genero())
+            {
+                return;
+            }
+            if (!NomeSocial())
             {
                 return;
             }
             if (!Etnia())
-            {
-                return;
-            }
-            if (!Estrangeiro())
             {
                 return;
             }
@@ -208,6 +237,18 @@ namespace CadastroCliente
                 return;
             }
             if (!Complemento())
+            {
+                return;
+            }
+            if (!Bairro())
+            {
+                return;
+            }
+            if (!Municipio())
+            {
+                return;
+            }
+            if (!Estado())
             {
                 return;
             }
