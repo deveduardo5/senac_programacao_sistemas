@@ -13,6 +13,7 @@ namespace CadastroCliente
     public partial class Cadastrar : Form
     {
         private List<Cliente> cliente = new List<Cliente>();
+        private readonly BindingSource BindingSource = [];
 
         public Cadastrar()
         {
@@ -27,6 +28,9 @@ namespace CadastroCliente
             Endereco endereco2 = new Endereco() { Logradouro = "Aviadora Anésia Pinheiro Machado", Numero = "9", Complemento = "Ao lado da pizzaria Raeleza", Bairro = "Cohab São Bento", Municipio = "São Paulo", Estado = "São Paulo", CEP = "05999999" };
             cliente.Add(new Cliente() { Id = "9", Name = "Suarez", DataNascimento = "24/01/1997", Telefone = "1199999-9999", Email = "suarez.jr@email.com", NomeSocial = "Pistoleiro", Estrangeiro = true, Tipo = TipoCliente.PJ, Genero = GeneroCliente.Homem, Etnia = EtniaCliente.Branco });
 
+
+            BindingSource.DataSource = cliente;
+            dataGridViewClientes.DataSource = BindingSource;
         }
 
         private bool LimparLabelErro()
@@ -147,18 +151,9 @@ namespace CadastroCliente
             return true;
         }
 
-        private bool Complemento()
-        {
-            if (textBoxComplemento.Text.All(char.IsSymbol))
-            {
-                labelErro.Text = "Não é possível realizar a validação somente com simbolos, insira letras";
-                labelErro.ForeColor = Color.Red;
-                return false;
-            }
-            return true;
-        }
+        
 
-        private bool Bairro() 
+        private bool Bairro()
         {
             if (string.IsNullOrWhiteSpace(textBoxBairro.Text))
             {
@@ -169,7 +164,7 @@ namespace CadastroCliente
             return true;
         }
 
-        private bool Municipio() 
+        private bool Municipio()
         {
             if (string.IsNullOrWhiteSpace(textBoxMunicipio.Text))
             {
@@ -177,7 +172,7 @@ namespace CadastroCliente
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
-            if (!textBoxMunicipio.Text.All(char.IsLetter))
+            if (textBoxMunicipio.Text.All(char.IsLetter))
             {
                 labelErro.Text = "Não é possível realizar a validação somente com números, insira letras";
                 labelErro.ForeColor = Color.Red;
@@ -236,10 +231,6 @@ namespace CadastroCliente
             {
                 return;
             }
-            if (!Complemento())
-            {
-                return;
-            }
             if (!Bairro())
             {
                 return;
@@ -252,6 +243,12 @@ namespace CadastroCliente
             {
                 return;
             }
+
+            cliente.Add(new Cliente()
+            {
+                NomeSocial = textBoxNomeSocial.Text,
+            }
+                );
 
             labelErro.Text = "Cadastrado com sucesso!";
             labelErro.ForeColor = Color.Green;

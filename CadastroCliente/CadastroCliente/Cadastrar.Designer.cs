@@ -67,7 +67,9 @@
             pictureBox1 = new PictureBox();
             buttonCadastrar = new Button();
             labelErro = new Label();
+            dataGridViewClientes = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewClientes).BeginInit();
             SuspendLayout();
             // 
             // labelNome
@@ -424,16 +426,31 @@
             labelErro.AutoSize = true;
             labelErro.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelErro.ForeColor = Color.Red;
-            labelErro.Location = new Point(513, 419);
+            labelErro.Location = new Point(31, 469);
             labelErro.Name = "labelErro";
             labelErro.Size = new Size(0, 15);
             labelErro.TabIndex = 39;
+            // 
+            // dataGridViewClientes
+            // 
+            dataGridViewClientes.AllowUserToAddRows = false;
+            dataGridViewClientes.AllowUserToDeleteRows = false;
+            dataGridViewClientes.AllowUserToOrderColumns = true;
+            dataGridViewClientes.AllowUserToResizeRows = false;
+            dataGridViewClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewClientes.Location = new Point(547, 15);
+            dataGridViewClientes.MultiSelect = false;
+            dataGridViewClientes.Name = "dataGridViewClientes";
+            dataGridViewClientes.ReadOnly = true;
+            dataGridViewClientes.Size = new Size(240, 150);
+            dataGridViewClientes.TabIndex = 3;
             // 
             // Cadastrar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 519);
+            Controls.Add(dataGridViewClientes);
             Controls.Add(labelErro);
             Controls.Add(buttonCadastrar);
             Controls.Add(pictureBox1);
@@ -476,6 +493,7 @@
             Name = "Cadastrar";
             Text = "Cadastrar";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewClientes).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -521,5 +539,6 @@
         private PictureBox pictureBox1;
         private Button buttonCadastrar;
         private Label labelErro;
+        private DataGridView dataGridViewClientes;
     }
 }
