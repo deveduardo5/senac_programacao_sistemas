@@ -8,7 +8,7 @@ namespace CadastroCliente
 {
     internal class Cliente
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string DataNascimento { get; set; }
         public string Telefone { get; set; }

@@ -438,18 +438,18 @@
             dataGridViewClientes.AllowUserToOrderColumns = true;
             dataGridViewClientes.AllowUserToResizeRows = false;
             dataGridViewClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewClientes.Location = new Point(547, 15);
+            dataGridViewClientes.Location = new Point(698, 161);
             dataGridViewClientes.MultiSelect = false;
             dataGridViewClientes.Name = "dataGridViewClientes";
             dataGridViewClientes.ReadOnly = true;
-            dataGridViewClientes.Size = new Size(240, 150);
+            dataGridViewClientes.Size = new Size(568, 209);
             dataGridViewClientes.TabIndex = 3;
             // 
             // Cadastrar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 519);
+            ClientSize = new Size(1278, 659);
             Controls.Add(dataGridViewClientes);
             Controls.Add(labelErro);
             Controls.Add(buttonCadastrar);
