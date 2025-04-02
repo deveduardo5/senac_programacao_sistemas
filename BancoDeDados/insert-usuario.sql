@@ -1,30 +1,25 @@
 SELECT 
     *
 FROM
-    usuario
-WHERE
-    id = 1;
+    usuario;
     
-SELECT 
-    *
-FROM
-    usuario
-WHERE
-    nome = 'Neymar Jr';
-    
-SELECT 
-    *
-FROM
-    usuario
-WHERE
-    email LIKE '%@email.com';
-    
-SELECT 
-    *
-FROM
-    usuario
-WHERE
-    senha LIKE '%@%';
+insert into usuario (
+nome,
+email,
+senha
+)
+values (
+'Eduardo',
+'edu.al@email.com',
+'edu@123'
+);
+
+insert into usuario (nome, email, senha)
+values 
+	('Neymar Jr','nj@email.com','Brun@'),
+    ('Maria Madalena','mmadalena@email.com','a1s2d3f4'),
+    ('Pablo Vitar','p.vitar@email.com','senh@fort3'),
+    ('Yuri Alberto','protagonista@email.com','@lenda');
     
 
     

@@ -1,8 +1,9 @@
-create table torcida (
-	credencial int primary key auto_increment,
-    nome varchar(100) not null,
-    idade int(2) not null,
-    endereço varchar(50) not null,
-    email varchar(50) not null unique,
-    senha varchar(16) not null
+CREATE TABLE torcida (
+    credencial INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    idade INT(2) NOT NULL,
+    endereço VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    senha VARCHAR(16) NOT NULL
 );
+    
