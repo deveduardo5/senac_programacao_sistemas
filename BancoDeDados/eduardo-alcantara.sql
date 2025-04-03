@@ -91,10 +91,7 @@ CREATE TABLE IF NOT EXISTS pedido (
     id INT PRIMARY KEY AUTO_INCREMENT,
     cliente_id INT NOT NULL,
     valor DECIMAL NOT NULL,
-    data_pedido VARCHAR(10) NOT NULL,
-    id_cliente int not null,
-    foreign key (id_cliente)
-    references cliente (id)
+    data_pedido VARCHAR(10) NOT NULL
 );
 
 insert into pedido (
@@ -141,22 +138,18 @@ GROUP BY cliente_id;
 /*1. Use um INNER JOIN para exibir os pedidos junto com o nome do cliente
 correspondente.*/
 
-SELECT 
-    c.id,
-    c.nome,
-    c.idade,
-    c.cidade,
-    c.saldo,
-    p.valor AS valor,
-    p.data_pedido AS data_pedido,
-    p.cliente_id AS id_cliente
+
+
+/*SELECT 
+    cliente.id,
+    cliente.nome,
+    cliente.idade,
+    cliente.cidade,
+    cliente.saldo,
+    pedido.valor AS valor,
+    pedido.data_pedido AS data_pedido,
+    pedido.cliente_id AS id_cliente
 FROM
     cliente l
         INNER JOIN
-    cliente c ON c.id_cliente = c.id;
-
-
-
-
-
-
+    pedido pedido ON pedido.id_pedido = pedido.id;*/

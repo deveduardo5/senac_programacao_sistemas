@@ -46,4 +46,4 @@ SELECT
     livro.isbn,
     genero.nome AS genero,
     editora.nome AS editora,
-    autor.nome AS autor
+    autor.nome AS autor;
