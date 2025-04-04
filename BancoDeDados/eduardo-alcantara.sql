@@ -1,155 +1,106 @@
-/*Exercícios SQL 02*/
+/*Avaliação SQL*/
 
-/*1. Consultas Básicas*/
+/*1. Estrutura das Tabelas*/
 
-/*Exercício 1: Selecionando Dados*/
-create table if not exists cliente (
-	id int primary key auto_increment,
-    nome varchar(100) not null,
-    idade int (02) not null,
-    cidade varchar(50),
-    saldo decimal not null
+CREATE TABLE IF NOT EXISTS fornecedor (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    cidade VARCHAR(50) NOT NULL
 );
 
-insert into cliente (
-	nome,
-    idade,
-    cidade,
-    saldo
-) values
-	('Carlos', 45, 'São Paulo', 2500.00),
-    ('Mariana', 32, 'Rio de Janeiro', 3200.50),
-    ('Pedro', 27, 'Belo Horizonte', 1500.75),
-    ('Fernanda', 38, 'Curitiba', 4200.00);
-    
 SELECT 
     *
 FROM
-    pedido;
+    fornecedor;
     
-/*Tarefas:*/
+insert into fornecedor (nome, cidade) values ('TechBrasil', 'São Paulo'), ('Computech', 'Rio de Janeiro'), ('Moveis&Co', 'Curitiba');
 
-/*1. Selecione todos os clientes que moram no Rio de Janeiro.*/
-SELECT 
-    *
-FROM
-    cliente
-WHERE
-    cidade = 'Rio de Janeiro';
-    
-/*2. Liste os clientes com saldo superior a 2.000, ordenados pelo saldo em ordem
-decrescente.*/
-SELECT 
-    *
-FROM
-    cliente
-WHERE
-    saldo > 2.000
-ORDER BY saldo DESC;
+CREATE TABLE IF NOT EXISTS produto (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    categoria VARCHAR(50) NOT NULL,
+    preco DECIMAL NOT NULL,
+    estoque INT NOT NULL,
+    id_fornecedor int not null,
+    FOREIGN KEY (id_fornecedor)
+        REFERENCES fornecedor (id)
+);
 
-/*3. Recupere apenas os nomes e idades dos clientes com mais de 30 anos.*/
-SELECT 
-    nome, idade
-FROM
-    cliente
-WHERE
-    idade > 30;
-    
-/*2. Filtrando e Aplicando Condições*/
-
-/*Exercício 2: Cláusula WHERE*/
-
-/*1. Encontre todos os clientes cuja idade está entre 25 e 40 anos.*/
 SELECT 
     *
 FROM
-    cliente
-WHERE
-    idade > 25 AND idade < 40;
+    produto;
     
-/*2. Recupere os clientes cujo nome começa com 'F'.*/
-SELECT 
-    *
-FROM
-    cliente
-WHERE
-    nome LIKE 'F%';
-    
-/*3. Liste os clientes que não moram em São Paulo nem Curitiba.*/
-SELECT 
-    *
-FROM
-    cliente
-WHERE
-    cidade != 'São Paulo' and cidade != 'Curitiba';
-    
-/*3. Agregação e Agrupamento*/
+insert into produto (nome, categoria, preco, estoque, id_fornecedor) values ('Celular X', 'Eletrônicos', 2500.00, 30, 1), ('Notebook Y', 'Eletrônicos', 4800.00, 15, 2), ('Mesa de
+Madeira', 'Móveis', 750.00, 10, 3), ('Cadeira Z', 'Móveis', 300.00, 25, 3), ('TV 50"', 'Eletrônicos', 3500.00 , 8, 1);
 
-/*Exercício 3: COUNT, SUM, AVG, GROUP BY*/
+CREATE TABLE IF NOT EXISTS cliente (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    cidade VARCHAR(50) NOT NULL,
+    idade INT NOT NULL
+);
+
+SELECT 
+    *
+FROM
+    cliente;
+    
+insert into cliente (nome, cidade, idade) values ('João Silva', 'São Paulo', 35), ('Maria Santos', 'Belo Horizonte', 28), ('Carlos Lima ', 'Rio de Janeiro ', 42), ('Fernanda Rocha', 'Curitiba', 30);
 
 CREATE TABLE IF NOT EXISTS pedido (
     id INT PRIMARY KEY AUTO_INCREMENT,
+    produto_id INT NOT NULL,
+    FOREIGN KEY (produto_id)
+        REFERENCES produto (id),
+    quantidade INT NOT NULL,
+    data_pedido DATE NOT NULL,
     cliente_id INT NOT NULL,
-    valor DECIMAL NOT NULL,
-    data_pedido VARCHAR(10) NOT NULL
+    FOREIGN KEY (cliente_id)
+        REFERENCES cliente (id)
 );
-
-insert into pedido (
-	cliente_id,
-    valor,
-    data_pedido
-) values 
-	(1, 500.00, '2024-03-10'),
-    (2, 1200.00, '2024-03-12'),
-    (3, 300.50, '2024-03-15'),
-    (1, 800.00, '2024-03-18');
 
 SELECT 
     *
 FROM
     pedido;
     
-/*Tarefas:*/
-
-/*1. Conte quantos pedidos foram feitos no total.*/
-SELECT 
-    COUNT(*)
-FROM
-    pedido;
-
-/*2. Calcule o valor médio dos pedidos.*/
-SELECT 
-    AVG(valor)
-FROM
-    pedido;
-
-/*3. Agrupe os pedidos por cliente_id e exiba o total gasto por cada cliente.*/
-SELECT
-	cliente_id,
-    SUM(valor)
-FROM
-    pedido
-GROUP BY cliente_id;
-
-/*4. Junções (Joins)*/
-
-/*Exercício 4: INNER JOIN, LEFT JOIN*/
-
-/*1. Use um INNER JOIN para exibir os pedidos junto com o nome do cliente
-correspondente.*/
+insert into pedido (produto_id, quantidade, data_pedido, cliente_id) values ( 1, 2, '2024-03-10', 1), ( 3, 1, '2024-03-11', 2), ( 2, 1, '2024-03-15', 3), ( 5, 3, '2024-03-18', 1), ( 4, 4, '2024-03-20', 4);
 
 
 
-/*SELECT 
-    cliente.id,
-    cliente.nome,
-    cliente.idade,
-    cliente.cidade,
-    cliente.saldo,
-    pedido.valor AS valor,
-    pedido.data_pedido AS data_pedido,
-    pedido.cliente_id AS id_cliente
-FROM
-    cliente l
-        INNER JOIN
-    pedido pedido ON pedido.id_pedido = pedido.id;*/
+/*2. Exercícios Avançados*/
+
+/*Consultas e Filtros (WHERE, ORDER BY, LIKE, BETWEEN)*/
+
+/*1. Selecione os produtos da categoria "Eletrônicos" cujo preço seja superior a R$3000, ordenados do mais caro para o mais barato.*/
+SELECT nome, categoria, preco FROM produto WHERE categoria = 'Eletrônicos' AND preco > 3000 ORDER BY nome ASC;
+
+/*2. Encontre os clientes que não moram em São Paulo e têm idade acima de 30 anos.*/
+SELECT * FROM cliente WHERE cidade <> 'São Paulo' and idade > 30;
+
+/*3. Liste os pedidos feitos entre "2024-03-10" e "2024-03-15", ordenados pela data em ordem crescente.*/
+SELECT * FROM pedido WHERE date(data_pedido) between '2024-03-10' AND '2024-03-15';
+
+/*4. Recupere os produtos cujo estoque é menor que 10 unidades e exiba em ordem crescente de estoque.*/
+SELECT nome, estoque FROM produto WHERE estoque < 10 ORDER BY estoque ASC;
+
+/*5. Liste os fornecedores que não estão no Rio de Janeiro e cujo nome começa com "T".*/
+SELECT * FROM fornecedor WHERE cidade != 'Rio de Janeiro' AND nome LIKE 'T%';
+
+/*Agregação e Agrupamento (COUNT, SUM, AVG, GROUP BY)*/
+
+/*1. Calcule o preço médio dos produtos para cada categoria.*/
+SELECT categoria, AVG(preco) FROM produto GROUP BY categoria;
+
+/*2. Conte quantos pedidos cada cliente realizou.*/
+SELECT cliente_id, COUNT(quantidade) FROM pedido GROUP BY cliente_id;
+
+/*3. Liste o total de produtos em estoque por categoria.*/
+select categoria, sum(estoque) from produto group by categoria;
+
+/*4. Encontre o pedido com a maior quantidade de produtos comprados e exiba o id do
+pedido, produto_id e quantidade.*/
+
+/*5. Descubra quantos clientes há em cada cidade, ordenando os resultados da cidade com
+mais clientes para a cidade com menos clientes.*/
