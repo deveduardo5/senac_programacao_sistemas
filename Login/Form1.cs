@@ -1,11 +1,14 @@
-using System.Linq;
+using MySql.Data.MySqlClient;
 
 namespace Login
 {
     public partial class FormLogin : Form
     {
         // Declaração de uma lista de usuários
-        List<Usuario> usuarios = new List<Usuario>();
+        //List<Usuario> usuarios = new List<Usuario>();
+
+        private static readonly string ConnectionString = "datasource=localhost;username=root;password=;database=senac;";
+        private readonly MySqlConnection Connection = new MySqlConnection(ConnectionString);
 
         // Construtor da classe
         public FormLogin()
@@ -13,9 +16,9 @@ namespace Login
             InitializeComponent();
 
             // Adicionando usuários na lista
-            usuarios.Add(new Usuario() { Email = "neymar.jr@email.com", Senha = "Brun@123" });
-            usuarios.Add(new Usuario() { Email = "pablo.vitar@email.com", Senha = "12345Abc!" });
-            usuarios.Add(new Usuario() { Email = "sukuna.silva@email.com", Senha = "Sete7Sete!" });
+            //usuarios.Add(new Usuario() { Email = "neymar.jr@email.com", Senha = "Brun@123" });
+            //usuarios.Add(new Usuario() { Email = "pablo.vitar@email.com", Senha = "12345Abc!" });
+            //usuarios.Add(new Usuario() { Email = "sukuna.silva@email.com", Senha = "Sete7Sete!" });
         }
 
         // Método executado ao clicar no botão Entrar
@@ -50,15 +53,36 @@ namespace Login
             // Verifica se o usuário e senha estão corretos
             // Inicializa a variável autenticado como false
             bool autenticado = false;
-            // Percorre a lista de usuários usando um laço de repetição
-            for (int i = 0; i < usuarios.Count; i++) {
-                // Verifica se o usuário e senha digitados são iguais ao usuário e senha da lista
-                if (usuarios[i].Email == usuarioBuscado && usuarios[i].Senha == senha)
-                {
-                    // Se forem iguais, muda a variável autenticado para true
-                    autenticado = true;
-                }
+
+            try
+            {
+                Connection.Open();
+
+                string query = $"SELECT senha FROM usuario WHERE email = '{usuarioBuscado}';";
+
+                MySqlCommand mySqlCommand = new MySqlCommand(query, Connection);
+                MySqlDataReader reader = mySqlCommand.ExecuteReader();
+
+                autenticado = reader.Read() && reader.GetString(0) == senha;
             }
+            catch
+            {
+                MessageBox.Show("Erro de banco de dados");
+            }
+            finally 
+            {
+                Connection.Close();
+            }
+
+            //// Percorre a lista de usuários usando um laço de repetição
+            //for (int i = 0; i < usuarios.Count; i++) {
+            //    // Verifica se o usuário e senha digitados são iguais ao usuário e senha da lista
+            //    if (usuarios[i].Email == usuarioBuscado && usuarios[i].Senha == senha)
+            //    {
+            //        // Se forem iguais, muda a variável autenticado para true
+            //        autenticado = true;
+            //    }
+            //}
 
             // Verifica se o usuário e senha não foram encontrados
             if (!autenticado)
@@ -146,13 +170,34 @@ namespace Login
 
             // Verifica se o novo usuário já está cadastrado
             bool encontrado = false;
-            for (int i = 0; i < usuarios.Count; i++)
+
+            try
             {
-                if (usuarios[i].Email == novoUsuario)
-                {
-                    encontrado = true;
-                }
+                Connection.Open();
+
+                string query = $"SELECT email FROM usuario WHERE email = '{novoUsuario}';";
+
+                MySqlCommand mySqlCommand = new MySqlCommand(query, Connection);
+                MySqlDataReader reader = mySqlCommand.ExecuteReader();
+
+                encontrado = reader.Read();
             }
+            catch
+            {
+                MessageBox.Show("Erro de banco de dados");
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            //for (int i = 0; i < usuarios.Count; i++)
+            //{
+            //    if (usuarios[i].Email == novoUsuario)
+            //    {
+            //        encontrado = true;
+            //    }
+            //}
 
             // Se o usuário já estiver cadastrado, exibe mensagem de erro
             if (encontrado)
@@ -162,10 +207,32 @@ namespace Login
             }
 
             // Adiciona o novo usuário na lista
-            usuarios.Add(new Usuario() { Email = novoUsuario, Senha = novaSenha });
-            labelResultado.Text = "Usuário cadastrado com sucesso!";
-            textBoxNovoUsuario.Clear();
-            textBoxNovaSenha.Clear();
+            try
+            {
+                Connection.Open();
+
+                string query = $"INSERT INTO usuario (email, senha) VALUES ('{novoUsuario}', '{novaSenha}');";
+
+                MySqlCommand mySqlCommand = new MySqlCommand(query, Connection);
+                mySqlCommand.ExecuteNonQuery();
+
+                labelResultado.Text = "Usuário cadastrado com sucesso!";
+                textBoxNovoUsuario.Clear();
+                textBoxNovaSenha.Clear();
+            }
+            catch
+            {
+                MessageBox.Show("Erro de banco de dados");
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            //usuarios.Add(new Usuario() { Email = novoUsuario, Senha = novaSenha });
+            //labelResultado.Text = "Usuário cadastrado com sucesso!";
+            //textBoxNovoUsuario.Clear();
+            //textBoxNovaSenha.Clear();
         }
     }
 }
