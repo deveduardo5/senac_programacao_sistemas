@@ -1,0 +1,17 @@
+D:\senac-programador-sistemas\ListaAtividades\bin\Debug\net8.0-windows\ListaAtividades.exe
+D:\senac-programador-sistemas\ListaAtividades\bin\Debug\net8.0-windows\ListaAtividades.deps.json
+D:\senac-programador-sistemas\ListaAtividades\bin\Debug\net8.0-windows\ListaAtividades.runtimeconfig.json
+D:\senac-programador-sistemas\ListaAtividades\bin\Debug\net8.0-windows\ListaAtividades.dll
+D:\senac-programador-sistemas\ListaAtividades\bin\Debug\net8.0-windows\ListaAtividades.pdb
+D:\senac-programador-sistemas\ListaAtividades\obj\Debug\net8.0-windows\ListaAtividades.Form1.resources
+D:\senac-programador-sistemas\ListaAtividades\obj\Debug\net8.0-windows\ListaAtividades.csproj.GenerateResource.cache
+D:\senac-programador-sistemas\ListaAtividades\obj\Debug\net8.0-windows\ListaAtividades.GeneratedMSBuildEditorConfig.editorconfig
+D:\senac-programador-sistemas\ListaAtividades\obj\Debug\net8.0-windows\ListaAtividades.AssemblyInfoInputs.cache
+D:\senac-programador-sistemas\ListaAtividades\obj\Debug\net8.0-windows\ListaAtividades.AssemblyInfo.cs
+D:\senac-programador-sistemas\ListaAtividades\obj\Debug\net8.0-windows\ListaAtividades.csproj.CoreCompileInputs.cache
+D:\senac-programador-sistemas\ListaAtividades\obj\Debug\net8.0-windows\ListaAtividades.sourcelink.json
+D:\senac-programador-sistemas\ListaAtividades\obj\Debug\net8.0-windows\ListaAtividades.dll
+D:\senac-programador-sistemas\ListaAtividades\obj\Debug\net8.0-windows\refint\ListaAtividades.dll
+D:\senac-programador-sistemas\ListaAtividades\obj\Debug\net8.0-windows\ListaAtividades.pdb
+D:\senac-programador-sistemas\ListaAtividades\obj\Debug\net8.0-windows\ListaAtividades.genruntimeconfig.cache
+D:\senac-programador-sistemas\ListaAtividades\obj\Debug\net8.0-windows\ref\ListaAtividades.dll
