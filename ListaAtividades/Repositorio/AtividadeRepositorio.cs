@@ -26,6 +26,7 @@ namespace ListaAtividades.Repositorio
                 }
             }
         }
+
         public void AtualizarSituacao(int id, int novaSituacao)
         {
             using (var con = DataBase.GetConnection())
@@ -42,13 +43,14 @@ namespace ListaAtividades.Repositorio
                 }
             }
         }
+
         public Atividade BuscarAtividadeEmAndamento()
         {
             using (var con = DataBase.GetConnection())
             {  
                 con.Open();
 
-                string query = $"select * from atividade where situacao = {Situacao.Realizando};";
+                string query = $"select * from atividade where situacao = {(int)Situacao.Realizando};";
 
                 using (var cmd = new MySqlCommand(query, con))
                 {
@@ -79,7 +81,7 @@ namespace ListaAtividades.Repositorio
             {
                 con.Open();
                 
-                string query = $"select* from atividade where situacao = {Situacao.Pendente};";
+                string query = $"select* from atividade where situacao = {(int)Situacao.Pendente};";
 
                 using (var cmd = new MySqlCommand(query, con))
                 {
