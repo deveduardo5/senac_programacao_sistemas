@@ -33,3 +33,4 @@ D:\senac-programador-sistemas\ListaAtividades\bin\Debug\net8.0-windows\runtimes\
 D:\senac-programador-sistemas\ListaAtividades\bin\Debug\net8.0-windows\runtimes\win-x64\native\krbcc64.dll
 D:\senac-programador-sistemas\ListaAtividades\bin\Debug\net8.0-windows\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 D:\senac-programador-sistemas\ListaAtividades\obj\Debug\net8.0-windows\ListaAti.E11ACCBB.Up2Date
+D:\senac-programador-sistemas\ListaAtividades\obj\Debug\net8.0-windows\ListaAtividades.CriarAtividade.resources
