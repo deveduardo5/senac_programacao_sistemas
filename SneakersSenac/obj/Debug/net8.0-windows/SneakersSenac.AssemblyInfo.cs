@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("ListaAtividades")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("SneakersSenac")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+593e67e619987583d544766fc2623b599055b48b")]
-[assembly: System.Reflection.AssemblyProductAttribute("ListaAtividades")]
-[assembly: System.Reflection.AssemblyTitleAttribute("ListaAtividades")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyProductAttribute("SneakersSenac")]
+[assembly: System.Reflection.AssemblyTitleAttribute("SneakersSenac")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
